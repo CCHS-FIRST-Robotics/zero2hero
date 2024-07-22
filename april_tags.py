@@ -1,6 +1,5 @@
 import cv2
 from cv2 import aruco
-import math
 
 # get camera
 camera = cv2.VideoCapture(0)
