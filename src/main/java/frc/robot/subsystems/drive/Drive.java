@@ -2,18 +2,20 @@ package frc.robot.subsystems.drive;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.math.kinematics.*;
-import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.Constants;
+import frc.robot.subsystems.drive.Motors.MotorsLeft;
+import frc.robot.subsystems.drive.Motors.MotorsRight;
 
 public class Drive extends SubsystemBase{
     DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.TRACK_WIDTH);
-    TalonFX l1, l2, r1, r2;
+    private final MotorsLeft leftMotors;
+    private final MotorsRight rightMotors;
 
-    public Drive(int l1Id, int l2Id, int r1Id, int r2Id){
-        l1 = new TalonFX(l1Id);
-        l2 = new TalonFX(l2Id);
-        r1 = new TalonFX(r1Id);
-        r2 = new TalonFX(r2Id);
+
+
+    public Drive(){
+        leftMotors = new MotorsLeft(Constants.LEFT_ID_1, Constants.LEFT_ID_2);
+        rightMotors = new MotorsRight(Constants.RIGHT_ID_1, Constants.RIGHT_ID_2);
     }
 
     public void setVelocity(ChassisSpeeds speeds){
@@ -22,9 +24,8 @@ public class Drive extends SubsystemBase{
         double lVelocity = wheelSpeeds.leftMetersPerSecond;
         double rVelocity = wheelSpeeds.rightMetersPerSecond;
 
-        l1.set(lVelocity);
-        l2.set(lVelocity);
-        r1.set(rVelocity);
-        r2.set(rVelocity);
+       leftMotors.setVoltage(lVelocity);
+       rightMotors.setVoltage(rVelocity);
+
     }
 }

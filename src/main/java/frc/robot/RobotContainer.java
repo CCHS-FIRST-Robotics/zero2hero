@@ -11,12 +11,7 @@ import frc.robot.subsystems.drive.*;
 public class RobotContainer {
     CommandXboxController controller = new CommandXboxController(Constants.CONTROLLER_PORT);
 
-    Drive drive = new Drive(
-        Constants.LEFT_ID_1,
-        Constants.LEFT_ID_2,
-        Constants.RIGHT_ID_1,
-        Constants.RIGHT_ID_2
-    );
+    Drive drive = new Drive();
 
     public RobotContainer() {
       configureBindings();
