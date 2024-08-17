@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.drive.Drive;
+import frc.robot.subsystems.Drive.Drive;
 
 public class DriveWithJoysticks extends Command{
     Drive drive;

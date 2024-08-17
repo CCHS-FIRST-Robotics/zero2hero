@@ -1,4 +1,4 @@
-package frc.robot.subsystems.drive.Motors;
+package frc.robot.subsystems.Motors;
 
 
 import com.revrobotics.CANSparkMax;
@@ -15,6 +15,10 @@ public class MotorsRight implements MotorIO{
         Cim2 = new CANSparkMax(cim_2_id, MotorType.kBrushed);
         encoder = Cim1.getEncoder();
         };
+
+
+
+
 
 
     
