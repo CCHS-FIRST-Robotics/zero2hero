@@ -16,5 +16,6 @@ public final class Constants {
     public static int RIGHT_ID_2 = 0;
 
     // and this
+    // MUST CHANGE BEFORE TESTING
     public static int TRACK_WIDTH = 0;
 }
