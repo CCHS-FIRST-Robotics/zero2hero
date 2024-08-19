@@ -18,4 +18,5 @@ public final class Constants {
     // and this
     // MUST CHANGE BEFORE TESTING
     public static int TRACK_WIDTH = 0;
+    public static double Wheel_Diameter = .0762;
 }

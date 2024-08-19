@@ -3,6 +3,9 @@ package frc.robot.subsystems.Motors;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+
+import frc.robot.Constants;
+
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class MotorsRight implements MotorIO{
@@ -43,6 +46,15 @@ public class MotorsRight implements MotorIO{
         inputs.Cim2Position = encoder.getPosition();
         inputs.Cim2Velocity = encoder.getVelocity();
         inputs.Cim2Temperature = Cim2.getMotorTemperature();
+    }
+
+
+    public double distanceTravled(){
+        double counts = encoder.getPosition();
+        double whellciqumference = Constants.Wheel_Diameter * Math.PI;
+        double revolutions = counts * encoder.getCountsPerRevolution();
+        return whellciqumference * revolutions;
+
     }
 
 

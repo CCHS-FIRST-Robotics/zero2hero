@@ -5,9 +5,12 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import frc.robot.Constants;
+
 public class MotorsLeft implements MotorIO{
     CANSparkMax Cim1, Cim2;
     RelativeEncoder encoder;
+    
     
 
     public MotorsLeft(int cim_1_id, int cim_2_id){
@@ -31,6 +34,7 @@ public class MotorsLeft implements MotorIO{
         inputs.Cim1Position = encoder.getPosition();
         inputs.Cim1Velocity = encoder.getVelocity();
         inputs.Cim1Temperature = Cim1.getMotorTemperature();
+        
 
 
 
@@ -39,6 +43,15 @@ public class MotorsLeft implements MotorIO{
         inputs.Cim2Position = encoder.getPosition();
         inputs.Cim2Velocity = encoder.getVelocity();
         inputs.Cim2Temperature = Cim2.getMotorTemperature();
+    }
+
+
+    public double distanceTravled(){
+        double counts = encoder.getPosition();
+        double whellciqumference = Constants.Wheel_Diameter * Math.PI;
+        double revolutions = counts * encoder.getCountsPerRevolution();
+        return whellciqumference * revolutions;
+
     }
 
 
