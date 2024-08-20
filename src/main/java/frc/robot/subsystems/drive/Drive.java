@@ -7,6 +7,7 @@ import edu.wpi.first.math.kinematics.*;
 import frc.robot.Constants;
 import frc.robot.subsystems.Motors.*;
 import com.kauailabs.navx.frc.AHRS;
+import static edu.wpi.first.units.Units.*;
 
 public class Drive extends SubsystemBase implements DriveIO {
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.TRACK_WIDTH);
@@ -28,13 +29,15 @@ public class Drive extends SubsystemBase implements DriveIO {
     public void updateInputs(DriveIOInputs inputs) {
         inputs.gyroYawDeg = imu.getYaw();
         inputs.gyroPitchDeg = imu.getPitch();
-        inputs.gyrorollDeg = imu.getRoll();
+        inputs.gyroRollDeg = imu.getRoll();
+        inputs.gyroYawRad = Radians.of(imu.getYaw());
+        inputs.gyroPitchwRad = Radians.of(imu.getPitch());
+        inputs.gyroRollRad = Radians.of(imu.getRoll());
         inputs.turn_times = imu.getAngle() / 360.0;
         inputs.xAccelMps = imu.getWorldLinearAccelX() * 9.81;
         inputs.yAccelMps = imu.getWorldLinearAccelY() * 9.81;
         inputs.xVelocityMps += inputs.xAccelMps * 0.02;
         inputs.yVelocityMps += inputs.yAccelMps * 0.02;
-        inputs.currentPose = currentPose;
     }
 
    
@@ -65,7 +68,7 @@ public class Drive extends SubsystemBase implements DriveIO {
      * @return The current roll of the gyro.
      */
     public Rotation2d getGyroroll() {
-        return Rotation2d.fromDegrees(inputs.gyrorollDeg);
+        return Rotation2d.fromDegrees(inputs.gyroRollDeg);
     }
 
     /**
@@ -73,7 +76,7 @@ public class Drive extends SubsystemBase implements DriveIO {
      * @return The current pose of the robot.
      */
     public Pose2d getPose2d() {
-        return inputs.currentPose;
+        return currentPose;
     }
 
     @Override

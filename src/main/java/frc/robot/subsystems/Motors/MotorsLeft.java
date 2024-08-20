@@ -4,7 +4,6 @@ package frc.robot.subsystems.Motors;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-
 import frc.robot.Constants;
 
 public class MotorsLeft implements MotorIO{
