@@ -6,9 +6,11 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.Constants;
 
+
 public class MotorsLeft implements MotorIO{
     CANSparkMax Cim1, Cim2;
     RelativeEncoder encoder;
+    private final MotorIOInputs inputs = new MotorIOInputs();
     
     
 
@@ -27,7 +29,7 @@ public class MotorsLeft implements MotorIO{
     }
 
 
-    public void updateInputs(MotorIOInputs inputs){
+    public void updateInputs(){
         inputs.Cim1Current = Cim1.getOutputCurrent();
         inputs.Cim1Voltage = Cim1.getBusVoltage();
         inputs.Cim1Position = encoder.getPosition();
