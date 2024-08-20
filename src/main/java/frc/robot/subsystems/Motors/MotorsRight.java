@@ -49,7 +49,7 @@ public class MotorsRight implements MotorIO{
     }
 
 
-    public double distanceTravled(){
+    public double distanceTraveled(){
         double counts = encoder.getPosition();
         double whellciqumference = Constants.Wheel_Diameter * Math.PI;
         double revolutions = counts * encoder.getCountsPerRevolution();
