@@ -40,11 +40,25 @@ public class Drive extends SubsystemBase {
     public Pose2d getPose(){
         return currentPose;
     }
+
     
+
+   public double leftDistanceTravled(){
+    return leftMotors.distanceTraveled();
+
+}
+
+
+
+    public double rightDistanceTravled(){
+        return rightMotors.distanceTraveled();
+
+    }
+        
 
     @Override
     public void periodic() {
         currentPose = odometry.update(NavX.getGyroYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled());
         NavX.updateInputs(gyroInputs); 
     }
-}
+    }
