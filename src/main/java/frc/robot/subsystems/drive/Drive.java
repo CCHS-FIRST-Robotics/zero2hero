@@ -43,8 +43,8 @@ public class Drive extends SubsystemBase {
 
     
 
-   public double leftDistanceTravled(){
-    return leftMotors.distanceTraveled();
+    public double leftDistanceTravled(){
+        return leftMotors.distanceTraveled();
 
 }
 
@@ -53,6 +53,11 @@ public class Drive extends SubsystemBase {
     public double rightDistanceTravled(){
         return rightMotors.distanceTraveled();
 
+}
+
+    public void Stop(){
+        leftMotors.setVoltage(0);
+        rightMotors.setVoltage(0);
     }
         
 

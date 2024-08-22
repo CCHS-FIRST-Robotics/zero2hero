@@ -4,6 +4,8 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
 
+import org.littletonrobotics.junction.Logger;
+
 import frc.robot.Constants;
 import frc.robot.subsystems.Drive.Drive;
 
@@ -27,7 +29,8 @@ public class DriveWithJoysticks extends Command{
     public void execute() {
         double leftY = leftYSupplier.get();
         double rightX = rightXSupplier.get();
-
+        Logger.recordOutput("JoystickForward", leftY);
+        Logger.recordOutput("JoystickTurn", rightX);
         ChassisSpeeds speeds = new ChassisSpeeds(
             applyPreferences(leftY),
             0, 
