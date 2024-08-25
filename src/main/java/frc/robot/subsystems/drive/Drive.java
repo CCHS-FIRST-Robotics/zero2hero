@@ -1,6 +1,9 @@
 package frc.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
@@ -12,18 +15,15 @@ import frc.robot.subsystems.Motors.*;
 
 public class Drive extends SubsystemBase {
     private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.TRACK_WIDTH);
-    private final MotorsLeft leftMotors;
-    private final MotorsRight rightMotors;
     private final DifferentialDriveOdometry odometry;
     private Pose2d currentPose = new Pose2d(0, 0, new Rotation2d());
-    private final Gyro NavX;
-    private final GyroIOInputs gyroInputs; 
+    private final MotorsLeft leftMotors = new MotorsLeft();
+    private final MotorsRight rightMotors = new MotorsRight();
+    private final Gyro NavX = new Gyro(); 
+    private final GyroIOInputs gyroInputs = new GyroIOInputs(); 
 
     public Drive() {
-        leftMotors = new MotorsLeft(Constants.LEFT_ID_1, Constants.LEFT_ID_2);
-        rightMotors = new MotorsRight(Constants.RIGHT_ID_1, Constants.RIGHT_ID_2);
-        NavX = new Gyro(); 
-        gyroInputs = new GyroIOInputs(); 
+       
         odometry = new DifferentialDriveOdometry(NavX.getGyroYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled(), currentPose);
     }
 
@@ -41,12 +41,30 @@ public class Drive extends SubsystemBase {
         return currentPose;
     }
 
-    
+    public void resetPose(){
+        leftMotors.resetDistanceTraveled();
+        rightMotors.resetDistanceTraveled();
+        NavX.resetImu();
+    }
 
+
+
+
+ public DifferentialDriveKinematics getKinematics(){
+    return kinematics;
+ }
+
+
+
+
+ 
     public double leftDistanceTravled(){
         return leftMotors.distanceTraveled();
 
 }
+        
+
+
 
 
 

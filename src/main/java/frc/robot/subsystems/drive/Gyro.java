@@ -5,11 +5,11 @@ import com.kauailabs.navx.frc.AHRS;
 import static edu.wpi.first.units.Units.*;
 
 public class Gyro implements GyroIO {
-    private final AHRS NavX;
+    private final AHRS NavX = new AHRS();
     private final GyroIOInputs inputs = new GyroIOInputs();
 
     public Gyro() {
-        NavX = new AHRS();
+        
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Gyro implements GyroIO {
         return Rotation2d.fromDegrees(inputs.gyroRollDeg);
     }
     /**
-     * Resets the IMU to its initial state.
+     * Resets the Yaw to 0.
      */
     public void resetImu() {
         NavX.reset();

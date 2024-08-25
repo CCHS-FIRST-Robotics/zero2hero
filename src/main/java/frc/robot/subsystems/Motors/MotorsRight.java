@@ -15,9 +15,9 @@ public class MotorsRight implements MotorIO{
     private final MotorIOInputs inputs = new MotorIOInputs();
     
 
-    public MotorsRight(int cim_1_id, int cim_2_id){
-        Cim1 = new CANSparkMax(cim_1_id, MotorType.kBrushed);
-        Cim2 = new CANSparkMax(cim_2_id, MotorType.kBrushed);
+    public MotorsRight(){
+        Cim1 = new CANSparkMax(Constants.RIGHT_ID_1, MotorType.kBrushed);
+        Cim2 = new CANSparkMax(Constants.RIGHT_ID_2, MotorType.kBrushed);
         encoder = Cim1.getEncoder();
 
         };
@@ -61,6 +61,11 @@ public class MotorsRight implements MotorIO{
     }
 
 
+
+    
+    public void resetDistanceTraveled(){
+        encoder.setPosition(0);
+    }
 
 
 
