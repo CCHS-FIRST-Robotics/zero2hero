@@ -3,7 +3,6 @@ package frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
@@ -30,12 +29,15 @@ public class Drive extends SubsystemBase {
 
 
 
-   
     public void setVelocity(ChassisSpeeds speeds) {
         DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
-        leftMotors.setVoltage(wheelSpeeds.leftMetersPerSecond);
-        rightMotors.setVoltage(wheelSpeeds.rightMetersPerSecond);
+        double leftRPM = wheelSpeeds.leftMetersPerSecond * Constants.metersPerSecondToRPM;
+        double rightRPM = wheelSpeeds.rightMetersPerSecond * Constants.metersPerSecondToRPM;
+        leftMotors.setVelocity(leftRPM);
+        rightMotors.setVelocity(rightRPM);
+        
     }
+    
 
     public Pose2d getPose(){
         return currentPose;

@@ -6,7 +6,7 @@ import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Constants;
 
-
+import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class MotorsRight implements MotorIO{
@@ -29,9 +29,12 @@ public class MotorsRight implements MotorIO{
 
     
 
-    public void setVoltage(double volts){
-        Cim1.setVoltage(volts);
-        Cim2.setVoltage(volts);
+    
+    public void setVelocity(double RPM){
+        Cim1.getPIDController().setReference(RPM, ControlType.kVelocity);
+        Cim2.getPIDController().setReference(RPM, ControlType.kVelocity);
+
+       
     }
 
 

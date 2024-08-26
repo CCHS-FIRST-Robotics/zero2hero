@@ -3,6 +3,7 @@ package frc.robot.subsystems.Motors;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import frc.robot.Constants;
 
@@ -18,14 +19,17 @@ public class MotorsLeft implements MotorIO{
         Cim1 = new CANSparkMax(Constants.LEFT_ID_1, MotorType.kBrushed);
         Cim2 = new CANSparkMax(Constants.LEFT_ID_2, MotorType.kBrushed);
         encoder = Cim1.getEncoder();
+        
         };
 
 
     
 
-    public void setVoltage(double volts){
-        Cim1.setVoltage(volts);
-        Cim2.setVoltage(volts);
+    public void setVelocity(double RPM){
+        Cim1.getPIDController().setReference(RPM, ControlType.kVelocity);
+        Cim2.getPIDController().setReference(RPM, ControlType.kVelocity);
+
+       
     }
 
 
