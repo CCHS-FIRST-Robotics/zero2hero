@@ -17,7 +17,7 @@ at_detector = Detector(
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("Failed to capture image")
+        print("Cant capture img :(")
         break
     
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -31,10 +31,11 @@ while True:
         ptC = (int(ptC[0]), int(ptC[1]))
         ptD = (int(ptD[0]), int(ptD[1]))
         
+        #BGR NOT RGB EHAHHEAHAEH
         cv2.polylines(frame, [np.array([ptA, ptB, ptC, ptD], dtype=np.int32)], isClosed=True, color=(0, 255, 0), thickness=2)
-        cv2.putText(frame, str(tag.tag_id), ptA, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, str(tag.tag_id), ptA, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
-    cv2.imshow("Frame", frame)
+    cv2.imshow("frame", frame)
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
