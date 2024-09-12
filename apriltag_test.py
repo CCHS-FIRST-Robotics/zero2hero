@@ -22,6 +22,9 @@ while True:
     
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+
+    #if want pose hafta have camera params fx, fy, cx, cy (focal lengths, optical center???)
+    #how do u use checkerboard to get these tho?
     tags = at_detector.detect(gray, estimate_tag_pose=False, camera_params= None, tag_size=0.1)
     
     for tag in tags:
@@ -31,7 +34,7 @@ while True:
         ptC = (int(ptC[0]), int(ptC[1]))
         ptD = (int(ptD[0]), int(ptD[1]))
         
-        #BGR NOT RGB EHAHHEAHAEH
+        #BGR NOT RGB
         cv2.polylines(frame, [np.array([ptA, ptB, ptC, ptD], dtype=np.int32)], isClosed=True, color=(0, 255, 0), thickness=2)
         cv2.putText(frame, str(tag.tag_id), ptA, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
