@@ -30,6 +30,7 @@ public class followAprilTag extends Command {
             System.out.println("tagID: " + (int)tagID);
             System.out.println("tag pose: x=" + x + ", y=" + y + ", z=" + z);
 
+            //control logic only using pose of x val
             if (x < 0) {
                 m_driveTrain.drive(driveSpeed, turnSpeed);
             } else if (x > 0) {
