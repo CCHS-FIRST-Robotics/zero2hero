@@ -1,8 +1,9 @@
 public class Robot extends TimedRobot{
   
-    final static int SPEEDUP_COUNT = 3000 / Main.INTERVAL;
+    final static int IDLE_COUNT = 3000 / Main.INTERVAL;
     final static int HOLD_COUNT = 1000 / Main.INTERVAL;
-    final static int SLOWDOWN_COUNT = 2000 / Main.INTERVAL;
+    final static int MAX_SPEED = 150;
+    public static int RoboSpeed = 0;
     
     public enum State {IDLE, SPEEDUP, HOLD, SLOWDOWN};
     State m_state;
@@ -10,8 +11,8 @@ public class Robot extends TimedRobot{
 
     /** Called once at the beginning of the robot program. */
     public Robot() {
-        m_state = State.SPEEDUP;
-        m_counter = SPEEDUP_COUNT;
+        m_state = State.IDLE;
+        m_counter = IDLE_COUNT;
         System.out.println("m_counter"+ m_counter);
     }
 
@@ -26,37 +27,44 @@ public class Robot extends TimedRobot{
 
         switch(m_state) {
             case IDLE: 
-                System.out.println("IDLE");
-                break;
-
-            case SPEEDUP:
-                System.out.println("SPEEDUP");
-
+                System.out.println("SPEED: " + RoboSpeed + " IDLE");
                 if (m_counter == 0)
                 {
-                    m_state = State.HOLD;
-                    m_counter = HOLD_COUNT;
+                    m_state = State.SPEEDUP;
                 }
                 else m_counter--;
                 break;
 
+            case SPEEDUP:
+                System.out.println("SPEED: " + RoboSpeed + " SPEEDUP");
+                if (RoboSpeed < MAX_SPEED)
+                    RoboSpeed++;
+                else
+                {
+                    m_state = State.HOLD;
+                    m_counter = HOLD_COUNT;
+                }
+
+                break;
+
             case HOLD:
-                System.out.println("HOLD");
+                System.out.println("SPEED: " + RoboSpeed + " HOLD");
                 if (m_counter == 0)
                 {
                     m_state = State.SLOWDOWN;
-                    m_counter = SLOWDOWN_COUNT;
                 }
                 else m_counter--;
                 break;
 
             case SLOWDOWN:
-                System.out.println("SLOWDOWN");
-                if (m_counter == 0)
+                System.out.println("SPEED: " + RoboSpeed + " SLOWDOWN");
+                if (RoboSpeed > 0)
+                    RoboSpeed--;
+                else 
                 {
                     m_state = State.IDLE;
+                    m_counter = IDLE_COUNT;
                 }
-                else m_counter--;
                 break;
         }
 
