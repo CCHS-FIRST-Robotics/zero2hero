@@ -3,11 +3,10 @@ public class Robot extends TimedRobot{
     final static int SPEEDUP_COUNT = 3000 / Main.INTERVAL;
     final static int HOLD_COUNT = 1000 / Main.INTERVAL;
     final static int SLOWDOWN_COUNT = 2000 / Main.INTERVAL;
-    
     public enum State {IDLE, SPEEDUP, HOLD, SLOWDOWN};
     State m_state;
     int m_counter = 0;
-
+    
     /** Called once at the beginning of the robot program. */
     public Robot() {
         m_state = State.SPEEDUP;
@@ -27,6 +26,8 @@ public class Robot extends TimedRobot{
         switch(m_state) {
             case IDLE: 
                 System.out.println("IDLE");
+                m_counter = SPEEDUP_COUNT;
+                m_state = State.SPEEDUP;
                 break;
 
             case SPEEDUP:
