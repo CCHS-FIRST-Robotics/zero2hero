@@ -47,7 +47,7 @@ public class Robot extends TimedRobot{
                     m_state = State.SLOWDOWN;
                     m_counter = SLOWDOWN_COUNT;
                 }
-                else m_counter--;
+                else m_counter--; 
                 break;
 
             case SLOWDOWN:
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot{
                 {
                     m_state = State.IDLE;
                 }
-                else m_counter--;
+                else m_counter--; 
                 break;
         }
 
