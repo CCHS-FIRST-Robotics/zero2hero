@@ -15,7 +15,7 @@ public class driveTrain extends SubsystemBase{
         leftMotor = new CANSparkMax(1, MotorType.kBrushless);
         rightMotor = new CANSparkMax(2, MotorType.kBrushless);
 
-        leftMotor.setSmartCurrentLimit(20); //current to 20 amps max (idk if this is true  ppl say 80... thats a lot)
+        leftMotor.setSmartCurrentLimit(20); //current to 20 amps max (idk if this is true ppl say 80...thats a lot)
         rightMotor.setSmartCurrentLimit(20);
 
         driveTrain = new DifferentialDrive(leftMotor, rightMotor);

@@ -5,15 +5,19 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.followAprilTag;
 import frc.robot.subsystems.driveTrain;
 import org.littletonrobotics.junction.LoggedRobot;
+import org.littletonrobotics.junction.*;
 
 public class Robot extends LoggedRobot {
+
   private driveTrain DRIVETRAIN = new driveTrain();
   private Command m_autonomousCommand;
-  private RobotContainer m_robotContainer;
+  RobotContainer m_robotContainer;
 
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    Logger.recordMetadata("ProjectName", "AprilTagFollowing");
+    Logger.start();
   }
 
   @Override

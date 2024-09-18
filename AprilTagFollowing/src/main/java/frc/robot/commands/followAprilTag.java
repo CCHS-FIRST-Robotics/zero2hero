@@ -20,9 +20,10 @@ public class followAprilTag extends Command {
     @Override
     public void execute() {
         double tagID = networkTable.getEntry("tagID").getDouble(0);
-        double[] tagPose = networkTable.getEntry("tagPose").getDoubleArray(new double[3]);
+        double[] tagPose = networkTable.getEntry("tagPose").getDoubleArray(new double[0]);
 
         if (tagPose.length >= 3) {
+            //assuming tag pose has x, y, and z (pitch, roll, yaw)
             double x = tagPose[0];
             double y = tagPose[1];
             double z = tagPose[2];
