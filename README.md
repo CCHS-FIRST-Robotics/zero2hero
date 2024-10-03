@@ -4,6 +4,7 @@
 
 [Finite State Machine](fsm)
 
+[Linear Regression](linear_regression/linear_regression.ipynb)
 
 # Robot Simulation
 [Maple-Swerve-Skeleton](https://github.com/Shenzhen-Robotics-Alliance/Maple-Swerve-Skeleton)
