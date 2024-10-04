@@ -1,6 +1,8 @@
 package frc.robot.subsystems.Drive;
 
 import org.littletonrobotics.junction.AutoLog;
+
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.Angle;
 import edu.wpi.first.units.Measure;
 import static edu.wpi.first.units.Units.*;
@@ -23,5 +25,38 @@ public interface GyroIO {
         public double yVelocityMps = 0.0;
     }
 
-    void updateInputs(GyroIOInputs inputs);
+    public default void updateInputs(GyroIOInputs inputs){
+
+    }
+
+
+    public default Rotation2d getPitch(){
+        return new Rotation2d();
+    }
+
+    public default Rotation2d get(){
+        return new Rotation2d();
+    }
+
+    public default Rotation2d getYaw(){
+        return new Rotation2d();
+    }
+
+    public default Rotation2d getRoll(){
+        return new Rotation2d();
+    }
+    public default void resetImu(){
+        
+    }
+
+
+
+
+
+
+
+
+
 }
+
+    

@@ -18,12 +18,13 @@ public class Drive extends SubsystemBase {
     private Pose2d currentPose = new Pose2d(0, 0, new Rotation2d());
     private final MotorsLeft leftMotors = new MotorsLeft();
     private final MotorsRight rightMotors = new MotorsRight();
+    GyroIOInputs inputs = new GyroIOInputs();
     private final Gyro NavX = new Gyro(); 
-    private final GyroIOInputs gyroInputs = new GyroIOInputs(); 
 
+   
     public Drive() {
        
-        odometry = new DifferentialDriveOdometry(NavX.getGyroYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled(), currentPose);
+        odometry = new DifferentialDriveOdometry(NavX.getYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled(), currentPose);
     }
 
 
@@ -90,8 +91,8 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void periodic() {
-        currentPose = odometry.update(NavX.getGyroYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled());
-        NavX.updateInputs(gyroInputs); 
+        currentPose = odometry.update(NavX.getYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled());
+        NavX.updateInputs(); 
     }
 
 
