@@ -26,6 +26,7 @@ public final class Constants {
     public static int LEFT_ID_2 = 0;
     public static int RIGHT_ID_1 = 0;
     public static int RIGHT_ID_2 = 0;
+    public static int ARM_ID = 0;
+    public static double ticksPerRevolution = 4096;
 
-    public static final double metersPerSecondToRPM = (60 / (Math.PI * Wheel_Diameter));
 }
