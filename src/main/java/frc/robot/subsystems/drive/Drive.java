@@ -28,17 +28,6 @@ public class Drive extends SubsystemBase {
 
 
 
-
-    public void setVelocity(ChassisSpeeds speeds) {
-        DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
-        double leftRPM = wheelSpeeds.leftMetersPerSecond * Constants.metersPerSecondToRPM;
-        double rightRPM = wheelSpeeds.rightMetersPerSecond * Constants.metersPerSecondToRPM;
-        leftMotors.setVelocity(leftRPM);
-        rightMotors.setVelocity(rightRPM);
-        
-    }
-    
-
     public Pose2d getPose(){
         return currentPose;
     }
@@ -64,6 +53,24 @@ public class Drive extends SubsystemBase {
         return leftMotors.distanceTraveled();
 
 }
+
+    public void setVoltage(double volts){
+        leftMotors.setVoltage(volts);
+        rightMotors.setVoltage(volts);
+    }
+
+
+    public void setVelocity(ChassisSpeeds speeds){
+        DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
+
+        double lVelocity = wheelSpeeds.leftMetersPerSecond;
+        double rVelocity = wheelSpeeds.rightMetersPerSecond;
+
+        leftMotors.setVelocity(lVelocity);
+        rightMotors.setVelocity(rVelocity);
+    }
+
+
         
 
 
@@ -76,8 +83,8 @@ public class Drive extends SubsystemBase {
 }
 
     public void Stop(){
-        leftMotors.setVoltage(0);
-        rightMotors.setVoltage(0);
+        leftMotors.setVoltage(0.0);
+        rightMotors.setVoltage(0.0);
     }
         
 
@@ -86,4 +93,7 @@ public class Drive extends SubsystemBase {
         currentPose = odometry.update(NavX.getGyroYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled());
         NavX.updateInputs(gyroInputs); 
     }
-    }
+
+
+
+}
