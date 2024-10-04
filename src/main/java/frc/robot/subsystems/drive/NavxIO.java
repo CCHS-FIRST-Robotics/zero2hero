@@ -6,10 +6,12 @@ import com.kauailabs.navx.frc.AHRS;
 import static edu.wpi.first.units.Units.*;
 
 public class NavxIO implements GyroIO {
-    private final AHRS NavX = new AHRS();
+    private final AHRS NavX;
     
+    public NavxIO(){
+        NavX = new AHRS();
+        NavX.reset();
 
-    public NavxIO() {
     }
 
     @Override

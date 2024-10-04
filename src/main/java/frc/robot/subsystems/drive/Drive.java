@@ -3,11 +3,12 @@ package frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
 import frc.robot.Constants;
-import frc.robot.subsystems.Drive.GyroIO.GyroIOInputs;
+
 import frc.robot.subsystems.Motors.*;
 
 
@@ -18,14 +19,14 @@ public class Drive extends SubsystemBase {
     private Pose2d currentPose = new Pose2d(0, 0, new Rotation2d());
     private final MotorsLeft leftMotors = new MotorsLeft();
     private final MotorsRight rightMotors = new MotorsRight();
-    GyroIOInputs inputs = new GyroIOInputs();
     private final Gyro NavX = new Gyro(); 
 
    
+
     public Drive() {
-       
         odometry = new DifferentialDriveOdometry(NavX.getYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled(), currentPose);
     }
+
 
 
 
