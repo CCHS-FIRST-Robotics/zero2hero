@@ -3,10 +3,16 @@ package frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
+import static edu.wpi.first.units.Units.*;
+
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
+import edu.wpi.first.units.Distance;
+import edu.wpi.first.units.Measure;
+import edu.wpi.first.units.Velocity;
+import edu.wpi.first.units.Voltage;
 import frc.robot.Constants;
 
 import frc.robot.subsystems.Motors.*;
@@ -31,33 +37,24 @@ public class Drive extends SubsystemBase {
 
 
 
-    public Pose2d getPose(){
+    public Pose2d getPose() {
         return currentPose;
     }
 
-    public void resetPose(){
-        leftMotors.resetDistanceTraveled();
-        rightMotors.resetDistanceTraveled();
-        NavX.resetImu();
+    public DifferentialDriveKinematics getKinematics(){
+        return kinematics;
     }
-
-
-
-
- public DifferentialDriveKinematics getKinematics(){
-    return kinematics;
- }
 
 
 
 
  
-    public double leftDistanceTravled(){
+    public Measure<Distance> leftDistanceTraveled(){
         return leftMotors.distanceTraveled();
 
 }
 
-    public void setVoltage(double volts){
+    public void setVoltage(Measure<Voltage> volts){
         leftMotors.setVoltage(volts);
         rightMotors.setVoltage(volts);
     }
@@ -66,34 +63,27 @@ public class Drive extends SubsystemBase {
     public void setVelocity(ChassisSpeeds speeds){
         DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
-        double lVelocity = wheelSpeeds.leftMetersPerSecond;
-        double rVelocity = wheelSpeeds.rightMetersPerSecond;
+        Measure<Velocity<Distance>> lVelocity = MetersPerSecond.of(wheelSpeeds.leftMetersPerSecond);
+        Measure<Velocity<Distance>> rVelocity = MetersPerSecond.of(wheelSpeeds.rightMetersPerSecond);
 
         leftMotors.setVelocity(lVelocity);
         rightMotors.setVelocity(rVelocity);
     }
 
-
-        
-
-
-
-
-
-    public double rightDistanceTravled(){
+    public Measure<Distance> rightDistanceTravled(){
         return rightMotors.distanceTraveled();
 
-}
+    }
 
     public void Stop(){
-        leftMotors.setVoltage(0.0);
-        rightMotors.setVoltage(0.0);
+        leftMotors.setVoltage(Volts.of(0.0));
+        rightMotors.setVoltage(Volts.of(0.0));
     }
         
 
     @Override
     public void periodic() {
-        currentPose = odometry.update(NavX.getYaw(), leftMotors.distanceTraveled(), rightMotors.distanceTraveled());
+        currentPose = odometry.update(NavX.getYaw(), leftMotors.distanceTraveled().in(Meters), rightMotors.distanceTraveled().in(Meters));
         NavX.updateInputs(); 
     }
 
