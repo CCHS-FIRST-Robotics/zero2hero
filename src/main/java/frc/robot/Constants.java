@@ -4,6 +4,13 @@
 
 package frc.robot;
 
+
+
+
+import static edu.wpi.first.units.Units.Meters;
+
+import edu.wpi.first.units.*;
+
 public final class Constants {
     public static double ANALOG_DEADZONE = 0.3;
 
@@ -19,8 +26,8 @@ public final class Constants {
 
    
     // CHANGE BEFORE TESTING
-    public static int TRACK_WIDTH = 0;
-    public static double Wheel_Diameter = .0762;
+    public static Measure<Distance> TRACK_WIDTH = Meters.of(0);
+    public static Measure<Distance> Wheel_Diameter = Meters.of(.0762);
     public static int CONTROLLER_PORT = 0;
     public static int LEFT_ID_1 = 0;
     public static int LEFT_ID_2 = 0;

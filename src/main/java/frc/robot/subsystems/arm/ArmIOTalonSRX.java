@@ -2,6 +2,8 @@ package frc.robot.subsystems.arm;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.units.Angle;
+import edu.wpi.first.units.Measure;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
@@ -16,10 +18,8 @@ public class ArmIOTalonSRX implements ArmIO {
     
 
     @Override
-    public void setPosition(double radians){
-        double revolutions = radians / (2 * Math.PI); // Convert radians to revolutions
-        double targetPosition = motor.getSelectedSensorPosition() + (revolutions * Constants.ticksPerRevolution);
-        motor.set(TalonSRXControlMode.Position, targetPosition); // ! not in radians
+    public void setPosition(Measure<Angle> radians){
+        
     }
 
     // public void setVelocity(double velocity){

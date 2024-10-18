@@ -2,6 +2,9 @@ package frc.robot.subsystems.Motors;
 
 import org.littletonrobotics.junction.Logger;
 
+import edu.wpi.first.units.Angle;
+import edu.wpi.first.units.Measure;
+
 public class Motor {
     private MotorIO io;
     private MotorIOInputsAutoLogged inputs = new MotorIOInputsAutoLogged();
@@ -20,6 +23,11 @@ public class Motor {
 
     public void setVelocity(double velocity){
         io.setVelocity(velocity);
+    }
+
+
+    public Measure<Angle> getSensorPosition(){
+        return io.getSensorPosition();
     }
 
     public void updateInputs(){

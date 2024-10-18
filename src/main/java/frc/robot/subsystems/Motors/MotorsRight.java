@@ -7,7 +7,7 @@ import frc.robot.Constants;
 
 
 public class MotorsRight extends SubsystemBase{
-    RelativeEncoder encoder;
+
     private final MotorIOTalonSRX motor1IO = new MotorIOTalonSRX(Constants.RIGHT_ID_1);
     private final MotorIOTalonSRX motor2IO = new MotorIOTalonSRX(Constants.RIGHT_ID_2);
     private final Motor Cim1 = new Motor(motor1IO);

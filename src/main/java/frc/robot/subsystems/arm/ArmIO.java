@@ -2,6 +2,9 @@ package frc.robot.subsystems.arm;
 
 import org.littletonrobotics.junction.AutoLog;
 
+import edu.wpi.first.units.Angle;
+import edu.wpi.first.units.Measure;
+
 
 public interface ArmIO {
     
@@ -17,7 +20,7 @@ public interface ArmIO {
 
 
 
-    public default void setPosition(double radians){
+    public default void setPosition(Measure<Angle> radians){
        
     }
 

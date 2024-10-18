@@ -1,6 +1,13 @@
 package frc.robot.subsystems.Motors;
 
+import static edu.wpi.first.units.Units.Degrees;
+
 import org.littletonrobotics.junction.AutoLog;
+
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
+import edu.wpi.first.units.Angle;
+import edu.wpi.first.units.Measure;
 
 public interface MotorIO {
     @AutoLog
@@ -22,4 +29,11 @@ public interface MotorIO {
     }
     public default void setVelocity(double velocity) {
     }
+    public default Measure<Angle> getSensorPosition(){
+        return Degrees.of(0);
+    
+
+
+
+}
 }
