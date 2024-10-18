@@ -17,17 +17,17 @@ public class NavxIO implements GyroIO {
     @Override
     public void updateInputs(GyroIOInputs inputs) {
         inputs.imu_Connected = NavX.isConnected();
-        inputs.gyroYawDeg = NavX.getYaw();
-        inputs.gyroPitchDeg = NavX.getPitch();
-        inputs.gyroRollDeg = NavX.getRoll();
+        inputs.gyroYawDeg = Degrees.of(NavX.getYaw());
+        inputs.gyroPitchDeg = Degrees.of(NavX.getPitch());
+        inputs.gyroRollDeg = Degrees.of(NavX.getRoll());
         inputs.gyroYawRad = Radians.of(NavX.getYaw());
         inputs.gyroPitchRad = Radians.of(NavX.getPitch());
         inputs.gyroRollRad = Radians.of(NavX.getRoll());
-        inputs.turn_times = NavX.getAngle() / 360.0;
-        inputs.xAccelMps = NavX.getWorldLinearAccelX() * 9.81;
-        inputs.yAccelMps = NavX.getWorldLinearAccelY() * 9.81;
-        inputs.xVelocityMps += inputs.xAccelMps * 0.02;
-        inputs.yVelocityMps += inputs.yAccelMps * 0.02;
+        inputs.turn_times = Rotations.of(NavX.getAngle() / 360.0); // i know there is no reason for this but why not
+        inputs.xAccelMps = MetersPerSecond.of(NavX.getWorldLinearAccelX() * 9.81);
+        inputs.yAccelMps = MetersPerSecond.of(NavX.getWorldLinearAccelY() * 9.81);
+        inputs.xVelocityMps += MetersPerSecond.of(inputs.xAccelMps.in(MetersPerSecond) * 0.02);
+        inputs.yVelocityMps += MetersPerSecond.of(inputs.yAccelMps.in(MetersPerSecond) * 0.02);
     }
 
    

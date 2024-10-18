@@ -4,7 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.util.Units;
+import static edu.wpi.first.units.Units.*;
+
+
+
+
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.commands.*;
@@ -18,9 +22,14 @@ public class RobotContainer {
     ArmIOTalonSRX io = new ArmIOTalonSRX(Constants.ARM_ID);
     Arm Arm = new Arm(io);
     Drive drive = new Drive();
+    private int[] armPositions;
+
 
     public RobotContainer() {
       configureBindings();
+      armPositions = new int[] {90, 180, 50, 0, 45};
+      
+
     }
 
     private void configureBindings() {
@@ -33,7 +42,7 @@ public class RobotContainer {
             )
         );
 
-        controller.x().onTrue(new InstantCommand(() -> Arm.setPosition(Units.degreesToRadians(10))));
+        controller.x().onTrue(new InstantCommand(() -> Arm.setPosition(Degrees.of(armPositions[1]))));
         
     }
 }
