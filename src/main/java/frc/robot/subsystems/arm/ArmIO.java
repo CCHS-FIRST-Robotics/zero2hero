@@ -26,6 +26,4 @@ public interface ArmIO {
 
     public default void updateInputs(ArmIOInputs inputs) {
     }
-    public default void setVelocity(double velocity) {
-    }
 }
