@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.*;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.*;
+import edu.wpi.first.units.Angle;
 import edu.wpi.first.units.Distance;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Velocity;
@@ -28,6 +29,7 @@ public class Drive extends SubsystemBase {
     private final MotorGroup leftMotors = new MotorGroup(Left_io, "Left Motors");
     private final MotorGroup rightMotors = new MotorGroup(Right_io, "Right Motors");
     private final Gyro NavX = new Gyro(); 
+
 
 
    
@@ -65,11 +67,11 @@ public class Drive extends SubsystemBase {
     public void setVelocity(ChassisSpeeds speeds){
         DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(speeds);
 
-        Measure<Velocity<Distance>> lVelocity = MetersPerSecond.of(wheelSpeeds.leftMetersPerSecond);
-        Measure<Velocity<Distance>> rVelocity = MetersPerSecond.of(wheelSpeeds.rightMetersPerSecond);
+        Measure<Velocity<Angle>> leftRadiansPerSecond = RadiansPerSecond.of(wheelSpeeds.leftMetersPerSecond / (Constants.WHEEL_CIRCUMFERENCE.in(Meters) * Constants.GEAR_RATIO));
+        Measure<Velocity<Angle>> rightRadiansPerSecond = RadiansPerSecond.of(wheelSpeeds.rightMetersPerSecond / (Constants.WHEEL_CIRCUMFERENCE.in(Meters) * Constants.GEAR_RATIO));
 
-        leftMotors.setVelocity(lVelocity);
-        rightMotors.setVelocity(rVelocity);
+        leftMotors.setVelocity(leftRadiansPerSecond);
+        rightMotors.setVelocity(rightRadiansPerSecond);
     }
 
     public Measure<Distance> rightDistanceTravled(){
@@ -87,6 +89,7 @@ public class Drive extends SubsystemBase {
     public void periodic() {
         currentPose = odometry.update(NavX.getYaw(), leftMotors.distanceTraveled().in(Meters), rightMotors.distanceTraveled().in(Meters));
         NavX.updateInputs(); 
+       
     }
 
 

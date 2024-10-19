@@ -30,7 +30,7 @@ public class MotorGroup {
     //     io.setPosition(radians);
     // }
 
-    public void setVelocity(Measure<Velocity<Distance>> velocity){
+    public void setVelocity(Measure<Velocity<Angle>> velocity){
         io.setVelocity(velocity);
     }
 
@@ -45,8 +45,7 @@ public class MotorGroup {
 
     public Measure<Distance> distanceTraveled(){
         Measure<Angle> Rotations = io.getSensorPosition();
-        Measure<Distance> whellciqumference = Constants.Wheel_Diameter.times(Math.PI);
-        Measure <Distance> metersTraveled = Meters.of(Rotations.in(Rotation) * whellciqumference.in(Meters));
+        Measure <Distance> metersTraveled = Meters.of(Rotations.in(Rotation) * Constants.WHEEL_CIRCUMFERENCE.in(Meters));
         return metersTraveled;
 
     }

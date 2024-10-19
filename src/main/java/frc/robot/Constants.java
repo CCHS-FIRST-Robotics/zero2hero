@@ -27,7 +27,7 @@ public final class Constants {
    
     // CHANGE BEFORE TESTING
     public static Measure<Distance> TRACK_WIDTH = Meters.of(0);
-    public static Measure<Distance> Wheel_Diameter = Meters.of(.0762);
+    public static Measure<Distance> WHEEL_DIAMETER = Meters.of(0);
     public static int CONTROLLER_PORT = 0;
     public static int LEFT_ID_1 = 0;
     public static int LEFT_ID_2 = 0;
@@ -35,5 +35,7 @@ public final class Constants {
     public static int RIGHT_ID_2 = 0;
     public static int ARM_ID = 0;
     public static double ticksPerRevolution = 4096;
+    public static final Measure<Distance> WHEEL_CIRCUMFERENCE =  Meters.of(Math.PI * WHEEL_DIAMETER.in(Meters));
+    public static final double GEAR_RATIO = 0;
 
 }

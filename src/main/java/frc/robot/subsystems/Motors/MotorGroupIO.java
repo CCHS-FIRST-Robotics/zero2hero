@@ -38,7 +38,7 @@ public interface MotorGroupIO {
     public default void updateInputs(MotorIOInputs inputs) {
     }
 
-    public default void setVelocity(Measure<Velocity<Distance>> speed){ //Meters per second
+    public default void setVelocity(Measure<Velocity<Angle>> speed){ //Meters per second
     }
     
     public default Measure<Angle> getSensorPosition(){

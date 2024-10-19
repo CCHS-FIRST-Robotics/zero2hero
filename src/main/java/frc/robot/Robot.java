@@ -14,7 +14,7 @@ public class Robot extends LoggedRobot {
     public void robotInit() {
         robotContainer = new RobotContainer();
 
-        Logger.recordMetadata("ProjectName", "ElectricalBoard2024"); // Set a metadata value
+        Logger.recordMetadata("ProjectName", "Tankdrive"); // Set a metadata value
         Logger.start();
     }
 
